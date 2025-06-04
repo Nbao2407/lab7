@@ -1,47 +1,10 @@
-<script setup lang="ts">
-import { ref } from 'vue';
-import img1 from '../assets/Images/rau.jpg'
-
-interface BlogItem {
-    title: string;
-    content: string;
-    image: string;
-}
-
-interface Comment {
-    name: string;
-    text: string;
-}
-
-const items = ref<BlogItem[]>([
-    { 
-        title: '8 loại rau củ quả giàu canxi',
-        content: 'Canxi là khoáng chất rất cần thiết cho cơ thể, đặc biệt là xương và răng. Canxi cũng giúp cơ thể duy trì chức năng của các tế bào thần kinh và cơ bắp. Thiếu canxi có thể dẫn đến loãng xương, đau nhức xương khớp và các vấn đề về tim mạch.',
-        image: img1 
-    }
-]);
-
-const comments = ref<Comment[]>([]);
-const commentText = ref('');
-
-const submitComment = () => {
-    if (commentText.value.trim()) {
-        comments.value.push({
-            name: 'Anonymous',
-            text: commentText.value.trim()
-        });
-        commentText.value = '';
-    }
-};
-</script>
-
 <template>
-    <div class="container mt-5 text-center">
+    <div class="container mt-5 text-center ">
         <h3 class="text-3xl font-bold mb-4 text-primary">Bình luận bài viết</h3>
         <div class="row">
-            <div class="col-md-5 mx-auto" v-for="(item, index) in items" :key="index">
+            <div class="col-md-5 mx-auto " v-for="(item, index) in items" :key="index">
                 <div class="card shadow mb-4">
-                    <img :src="item.image" class="card-img-top" alt="Hình ảnh">
+                    <img :src="item.image" class="card-img-top" alt="Hình ảnh" srcset="">
                     <div class="card-body d-flex flex-column">
                         <h3 class="card-title">{{ item.title }}</h3>
                         <p class="card-text flex-grow-1">{{ item.content }}</p>
@@ -67,6 +30,43 @@ const submitComment = () => {
         </div>
     </div>
 </template>
+
+<script setup lang="ts">
+import { ref } from 'vue';
+import img1 from '../assets/Images/rau.jpg'
+
+interface BlogItem {
+    title: string;
+    content: string;
+    image: string;
+}
+
+interface Comment {
+    name: string;
+    text: string;
+}
+
+const items: BlogItem[] = [
+    { 
+        title: '8 loại rau củ quả giàu canxi', 
+        content: 'Canxi là khoáng chất rất cần thiết cho cơ thể, đặc biệt là xương và răng. Canxi cũng giúp cơ thể duy trì chức năng của các tế bào thần kinh và cơ bắp. Thiếu canxi có thể dẫn đến loãng xương, đau nhức xương khớp và các vấn đề về tim mạch.', 
+        image: img1 
+    },
+];
+
+const comments = ref<Comment[]>([]);
+const commentText = ref('');
+
+const submitComment = () => {
+    if (commentText.value.trim()) {
+        comments.value.push({
+            name: 'User', // You might want to get this from your authentication system
+            text: commentText.value
+        });
+        commentText.value = ''; // Clear the input after submission
+    }
+};
+</script>
 
 <style scoped>
 .card-img-top {

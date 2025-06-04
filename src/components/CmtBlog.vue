@@ -47,11 +47,7 @@ interface Comment {
 }
 
 const items: BlogItem[] = [
-    { 
-        title: '8 loại rau củ quả giàu canxi', 
-        content: 'Canxi là khoáng chất rất cần thiết cho cơ thể, đặc biệt là xương và răng. Canxi cũng giúp cơ thể duy trì chức năng của các tế bào thần kinh và cơ bắp. Thiếu canxi có thể dẫn đến loãng xương, đau nhức xương khớp và các vấn đề về tim mạch.', 
-        image: img1 
-    },
+    { title: '8 loại rau củ quả giàu canxi', content: 'Canxi là khoáng chất rất cần thiết cho cơ thể, đặc biệt là xương và răng. Canxi cũng giúp cơ thể duy trì chức năng của các tế bào thần kinh và cơ bắp. Thiếu canxi có thể dẫn đến loãng xương, đau nhức xương khớp và các vấn đề về tim mạch.', image: img1 },
 ];
 
 const comments = ref<Comment[]>([]);
@@ -60,10 +56,10 @@ const commentText = ref('');
 const submitComment = () => {
     if (commentText.value.trim()) {
         comments.value.push({
-            name: 'User', // You might want to get this from your authentication system
+            name: 'User',
             text: commentText.value
         });
-        commentText.value = ''; // Clear the input after submission
+        commentText.value = '';
     }
 };
 </script>
